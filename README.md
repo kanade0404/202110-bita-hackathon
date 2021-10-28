@@ -49,3 +49,17 @@ http://localhost:81
 
 - Base image
   - [mysql/mysql-server](https://hub.docker.com/r/mysql/mysql-server):8.0
+  
+### application
+
+### Laravel(PHP)
+
+`/backend`
+
+### Vue.js(JavaScript)
+
+`/backend/resources`
+
+### Notification(Python)
+
+`/backend/functions`
