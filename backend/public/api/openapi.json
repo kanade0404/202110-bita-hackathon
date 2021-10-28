@@ -1,0 +1,72 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "BIG CITY app",
+        "description": "API definition for the application developed in the hackathon of BitA Inc.",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:81",
+            "description": "BIG CITY app API"
+        }
+    ],
+    "paths": {
+        "/test": {
+            "get": {
+                "summary": "Swaggerのテスト用",
+                "operationId": "4ca4f832051a4c7989c911170eba2bac",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "レスポンスパラメータの例を記載",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "レスポンスパラメータの例を記載",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected Error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "description": "レスポンスパラメータの例を記載",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

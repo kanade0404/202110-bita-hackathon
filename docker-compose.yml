@@ -36,7 +36,7 @@ services:
       dockerfile: ./infra/docker/nginx/Dockerfile
     ports:
       - target: 80
-        published: ${WEB_PORT:-80}
+        published: ${WEB_PORT:-81}
         protocol: tcp
         mode: host
     volumes:
