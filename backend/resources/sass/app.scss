@@ -9,6 +9,10 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+html, body {
+  height: 100%;
+}
+
 body {
   background-color: $body-bg;
   color: $font-base-color;
