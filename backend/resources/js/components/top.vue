@@ -1,32 +1,35 @@
 <template>
   <div class="wrapper">
     <div class="left">
-      <LeftProfile />
+      <Left :profile-info="profileInfo" />
     </div>
     <div class="center">
       <Center />
     </div>
     <div class="right">
+      <Right />
     </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
-import LeftProfile from './LeftProfile.vue';
+import Left from './Left.vue';
 import Center from './Center.vue';
+import Right from './Right.vue';
 
 export default {
   components: {
-    LeftProfile,
+    Left,
     Center,
+    Right,
   },
   data() {
     return {
       profileInfo: {
         thumbnail_path: 'https://mikan.bita.jp/img/members_img/15656647750seiya_sakata_mikan.jpg',
-        userName: '',
-        clubNames: ['部活名', '部活名', '部活名', '部活名'],
+        userName: 'さかってぃーさん',
+        clubNames: ['ボドゲ', '映画', 'テニス', 'お茶ぶ'],
       },
     };
   },

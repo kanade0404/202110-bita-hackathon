@@ -14,7 +14,7 @@
 
 <script>
 export default {
-  name: 'LeftProfile',
+  name: 'Left',
   props: {
     profileInfo: {
       type: Object,
@@ -26,6 +26,20 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.profileImg {
+  position:relative;
+  overflow: hidden;
+  width:100px;
+  height:100px;
+  border-radius:50%;
+  .img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height:100%;
+  }
+}
 .centerItem {
   margin: 0 auto;
 }
