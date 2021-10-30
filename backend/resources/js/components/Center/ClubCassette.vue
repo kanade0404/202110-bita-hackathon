@@ -1,6 +1,6 @@
 <template>
-  <li class="clubCasset">
-    <div class="cassetArea">
+  <li class="clubCassette">
+    <div class="cassetteArea">
       <div class="eventTop">
         <div>{{ eventData.club.name }}</div>
         <div>{{ eventData.event.name }}</div>
@@ -24,13 +24,13 @@
 
       </div>
     </div>
-    <div class="skalCasset"></div>
+    <div class="skalCassette"></div>
   </li>
 </template>
 
 <script>
 export default {
-  name: 'ClubCasset',
+  name: 'clubCassette',
   props: {
     eventData: {
       type: Object,
@@ -42,13 +42,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.clubCasset {
+.clubCassette {
   margin-bottom: 16px;
   border-radius: 5px;
   padding: 12px 16px;
   background: #f1f1f1;
   box-shadow: 0 0 5px #808080;
-  .cassetArea {
+  .cassetteArea {
     .eventTop {
       display: flex;
     }
@@ -56,7 +56,7 @@ export default {
       display: flex;
     }
   }
-  .skalCasset {
+  .skalCassette {
     height: 50px;
   }
 }
