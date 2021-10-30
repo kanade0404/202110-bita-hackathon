@@ -122,7 +122,13 @@ class ClubSeeder extends Seeder
         DB::table("club_members")->insert(["user_id" => "44", "club_id" => "3"]);
         DB::table("club_members")->insert(["user_id" => "45", "club_id" => "3"]);
         DB::table("events")->insert(["name" => "ボドゲ", "description" => "ボドゲーやります", "club_id" => "1", "create_user_id" => "1"]);
-
-
+        DB::table("events")->insert(["name" => "switch", "description" => "switchやります", "club_id" => "2"]);
+        DB::table("events")->insert(["name" => "釣り", "description" => "釣りやります", "club_id" => "3"]);
+        DB::table("event_schedules")->insert(["event_date" => "2021-10-30", "start_time" => "08:00:00", "end_time" => "18:00:00", "event_id" => "1"]);
+        DB::table("event_schedules")->insert(["event_date" => "2021-10-31", "start_time" => "08:00:00", "end_time" => "18:00:00", "event_id" => "2"]);
+        DB::table("event_schedules")->insert(["event_date" => "2021-10-31", "start_time" => "08:00:00", "end_time" => "18:00:00", "event_id" => "3"]);
+        DB::table("fix_event_notification_configs")->insert(["event_id" => "1", "notify_before_date" => "0", "notify_time" => "18"]);
+        DB::table("fix_event_notification_configs")->insert(["event_id" => "2", "notify_before_date" => "0", "notify_time" => "19"]);
+        DB::table("fix_event_notification_configs")->insert(["event_id" => "3", "notify_before_date" => "0", "notify_time" => "20"]);
     }
 }
