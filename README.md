@@ -12,10 +12,9 @@ Build a simple laravel development environment with docker-compose.
 ## Usage
 
 ```bash
-$ git clone git@github.com:ucan-lab/docker-laravel.git
-$ cd docker-laravel
-$ make create-project # Install the latest Laravel project
-$ make install-recommend-packages # Optional
+$ git clone git@github.com:kanade0404/202110-bita-hackathon.git
+$ cd 202110-bita-hackathon
+$ make build up
 ```
 
 http://localhost:81
