@@ -21,3 +21,9 @@
         }
     }
 </script>
+
+<style scoped>
+.container {
+    padding: 80px;
+}
+</style>
