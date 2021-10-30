@@ -14,6 +14,7 @@ Build a simple laravel development environment with docker-compose.
 ```bash
 $ git clone git@github.com:kanade0404/202110-bita-hackathon.git
 $ cd 202110-bita-hackathon
+# 初回は make init
 $ make build up
 ```
 
