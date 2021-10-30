@@ -15,9 +15,11 @@ use \Laravel\Socialite\Facades\Socialite;
 |
 */
 
-Route::get('/', function () {
+
+Route::get('{any}', function () {
     return view('welcome');
-});
+})->where('any', '.*');
+
 Route::get('/auth/redirect', function () {
     return Socialite::driver('google')->redirect();
 });

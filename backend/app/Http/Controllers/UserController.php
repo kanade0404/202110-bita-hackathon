@@ -4,12 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ClubController extends Controller
+class UserController extends Controller
 {
     /**
      * @OA\Get(
-     *   path="/club/{user_id}",
-     *   summary="Swaggerのテスト用",
+     *   path="/user/{user_id}",
+     *   summary="ユーザープロフィール取得API",
      *   @OA\Response(
      *     response=200,
      *     description="OK",

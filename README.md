@@ -18,6 +18,12 @@ $ cd 202110-bita-hackathon
 $ make build up
 ```
 
+## Database Migrations
+
+```bash
+$ make fresh
+```
+
 http://localhost:81
 
 ## Tips
