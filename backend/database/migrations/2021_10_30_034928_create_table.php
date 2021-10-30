@@ -30,6 +30,8 @@ class CreateTable extends Migration
             $table->text("description");
             $table->unsignedBigInteger("club_id");
             $table->foreign("club_id")->references("id")->on("clubs");
+            $table->unsignedBigInteger("create_user_id");
+            $table->foreign("create_user_id")->references("id")->on("users");
             $table->timestamps();
         });
         /**
