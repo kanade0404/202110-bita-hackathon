@@ -2,15 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
 
 class MeController extends Controller
 {
     /**
      * @OA\Get(
-     *   path="/user/{user_id}",
+     *   path="/api/user/{user_id}",
      *   summary="ユーザープロフィール取得API",
+     *   @OA\Parameter(
+     *     name="user_id",
+     *     in="path",
+     *     required=true,
+     *     description="ユーザーID"
+     *   ),
      *   @OA\Response(
      *     response=200,
      *     description="OK",
@@ -20,14 +25,14 @@ class MeController extends Controller
      *         property="user_name",
      *         type="string",
      *         description="ユーザー名"
-     *       )
+     *       ),
      *       @OA\Property(
      *         property="club_names",
      *         type="array",
-     *         description="所属している部活名一覧"
-     *       )
+     *         description="所属している部活名一覧",
+     *       ),
      *       @OA\Property(
-     *         property="thumbnail_image_path",
+     *         property="thumbnail_path",
      *         type="string",
      *         description="サムネイル画像のパス"
      *       )

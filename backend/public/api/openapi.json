@@ -12,10 +12,18 @@
         }
     ],
     "paths": {
-        "/test": {
+        "/api/user/{user_id}": {
             "get": {
-                "summary": "Swaggerのテスト用",
-                "operationId": "4ca4f832051a4c7989c911170eba2bac",
+                "summary": "ユーザープロフィール取得API",
+                "operationId": "48797d06fb0d9895183fd6eef30a14b9",
+                "parameters": [
+                    {
+                        "name": "user_id",
+                        "in": "path",
+                        "description": "ユーザーID",
+                        "required": true
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -23,8 +31,16 @@
                             "application/json": {
                                 "schema": {
                                     "properties": {
-                                        "message": {
-                                            "description": "レスポンスパラメータの例を記載",
+                                        "user_name": {
+                                            "description": "ユーザー名",
+                                            "type": "string"
+                                        },
+                                        "club_names": {
+                                            "description": "所属している部活名一覧",
+                                            "type": "array"
+                                        },
+                                        "thumbnail_image_path": {
+                                            "description": "サムネイル画像のパス",
                                             "type": "string"
                                         }
                                     },
