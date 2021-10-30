@@ -1,12 +1,13 @@
 <template>
   <div class="profileWrapper">
-    <div>
-      <div class="profileImg"><img :src="profileInfo.thumbnailPath" width="100" height="100"></div>
-      <div class="centerItem name">{{ profileInfo.userName }}</div>
+    <div class="serviceLogo"><img class="serviceLogoImg" src="/images/CLUBitA.png"></div>
+    <div class="profileDetail">
+      <div class="profileImg"><img class="profileImgItem" v-bind:src="profileInfo.thumbnail_path"></div>
+      <div class="centerItem name">{{ profileInfo.user_name }}</div>
     </div>
     <div>
       <ul class="clubList">
-        <li v-for="clubName in profileInfo.clubNames" :key="clubName"  class="centerItem club"><span>{{ clubName }}</span></li>
+        <li v-for="clubName in profileInfo.club_name" :key="clubName"  class="centerItem club"><span>{{ clubName }}</span></li>
       </ul>
     </div>
   </div>
@@ -28,19 +29,26 @@ export default {
 <style lang="scss" scoped>
 .profileWrapper {
   padding-top: 30px;
-  .profileImg {
-    position:relative;
-    overflow: hidden;
-    width:100px;
-    height:100px;
-    border-radius:50%;
+  .serviceLogo {
     margin: 0 auto;
-    .img{
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      height:100%;
+    width: 160px;
+    padding-bottom: 20px;
+    .serviceLogoImg {
+      width: 100%;
+    }
+  }
+  .profileDetail {
+    width: 210px;
+    margin: 0 auto;
+    .profileImg {
+      position:relative;
+      overflow: hidden;
+      width:100px;
+      margin: 0 auto;
+      .profileImgItem {
+        width:100%;
+        border-radius:50%;
+      }
     }
   }
   .centerItem {
@@ -57,11 +65,12 @@ export default {
     border: 1px solid #808080;
   }
   .clubList {
-    padding: 0 30px;
+    margin: 0 auto;
+    width: 150px;
     .club {
       font-size: 16px;
-      line-height: 30px;
-      height: 30px;
+      line-height: 35px;
+      height: 35px;
       padding: 2px;
     }
   }

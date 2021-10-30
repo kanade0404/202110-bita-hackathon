@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper">
     <div class="left">
-      <Left :profile-info="profileInfo" />
+      <Left v-if="showProfileInfo" :profile-info="profileInfo" />
     </div>
     <div class="center">
       <Center v-if="showEventList" :event-data-list="eventDataList" />
@@ -26,55 +26,17 @@ export default {
   },
   data() {
     return {
-      profileInfo: {
-        thumbnailPath: 'https://mikan.bita.jp/img/members_img/15656647750seiya_sakata_mikan.jpg',
-        userName: 'さかってぃーさん',
-        clubNames: ['ボドゲ', '映画', 'テニス', 'お茶ぶ'],
-      },
+      profileInfo: {},
+      // プロフィール取得APIのパスに使う
+      userId: '1',
       showProfileInfo: false,
       showEventList: false,
-      eventDataList: [
-        {
-          event: {
-            id: '',
-            name: '',
-            create_user: {
-              name: '',
-              thumbnail_path: '',
-            }
-          },
-          club: {
-            id: '',
-            name: '',
-          },
-          event_schedules: {
-            id: '',
-            participation_schedule: [
-              {
-                date: '',
-                start_time: '',
-                end_time: '',
-              },
-            ]
-          },
-          fix_event_schedule: {
-            event_name: '',
-            date: '',
-            start_time: '',
-            end_time: '',
-          },
-          member_schedules: [
-            {
-              user_name: '',
-              participation_status: '',
-            }
-          ]
-        },
-      ]
+      eventDataList: [],
     };
   },
-  mounted() {
+  created() {
     this.getEventInfo();
+    this.getUserProfile();
   },
   methods: {
     getEventInfo() {
@@ -85,6 +47,17 @@ export default {
             this.$set(this.eventDataList, index, eventData);
           });
           this.showEventList = true;
+        })
+        .catch(() => {
+          throw Error;
+        })
+    },
+    getUserProfile() {
+      axios
+        .get(`/user/${userId}`)
+        .then((response) => {
+          this.profileInfo = response.data;
+          this.showProfileInfo = true;
         })
         .catch(() => {
           throw Error;
