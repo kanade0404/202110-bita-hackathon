@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'thumbnail_path',
     ];
 
     /**
@@ -41,4 +42,17 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function clubMember (): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(ClubMember::class);
+    }
+    public function memberSchedules():  \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(MemberSchedule::class);
+    }
+    public function event():  \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(Event::class);
+    }
 }

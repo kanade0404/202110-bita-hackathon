@@ -16,13 +16,4 @@ use \Laravel\Socialite\Facades\Socialite;
 */
 
 
-Route::get('{any}', function () {
-    return view('welcome');
-})->where('any', '.*');
-
-Route::get('/auth/redirect', function () {
-    return Socialite::driver('google')->redirect();
-});
-Route::get('/auth/callback', function () {
-    return Socialite::driver('google')->user();
-});
+Route::view('/{any?}', 'welcome')->where('any', '.+');
