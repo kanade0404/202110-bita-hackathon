@@ -108,6 +108,7 @@ export default {
       }
       .eventName {
         font-size: 20px;
+        font-weight: bold;
       }
     }
     .hostProfile {
@@ -125,7 +126,6 @@ export default {
       }
       .hostDetail {
         .hostName {
-          font-weight: bold;
           font-size: 16px;
         }
         .postDate {
@@ -177,36 +177,31 @@ export default {
 .accordionWrapper {
   max-height: 0;
   overflow: hidden;
-  transition: max-height .05s linear;
   .accordionContents {
     overflow: hidden;
     transform: translateY(-100%);
-    transition: transform .05s linear;
     .accordionInner {
       overflow: hidden;
       transform: translateY(100%);
-      transition: transform .05s linear;
       padding-top: 24px;
     }
   }
   &.isExpand {
     max-height: 100%;
-    transition: max-height .05s linear;
     .accordionContents {
       transform: translateY(0);
-      transition: transform .05s linear;
       .accordionInner {
         transform: translateY(0);
-        transition: transform .05s linear;
         .adjustContents {
           .adjustSelect {
             margin-bottom: 24px;
           }
           .adjustComment {
             .textArea {
-              width: 310px;
+              width: calc(100% - 200px);
               margin: 0 auto;
               border-radius: 5px;
+              border: 1px solid #c3c4c4;
               .textItem {
                 width: 100%;
               }

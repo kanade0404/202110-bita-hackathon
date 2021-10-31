@@ -27,7 +27,7 @@ export default {
     height: 28px;
     width: 10px;
     background: #808080;
-    margin-right: 10px;
+    margin-right: 5px;
   }
 
   .adjustTitle {
