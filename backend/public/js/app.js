@@ -2157,7 +2157,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     toggleAccordion: function toggleAccordion() {
-      console.log('ああああ');
       this.isOpenAccordion = !this.isOpenAccordion;
     }
   }
@@ -2209,7 +2208,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       profileInfo: {},
       // プロフィール取得APIのパスに使う
-      userId: '',
+      userId: '1',
       showProfileInfo: false,
       showEventList: false,
       eventDataList: []
@@ -2235,7 +2234,7 @@ __webpack_require__.r(__webpack_exports__);
     getUserProfile: function getUserProfile() {
       var _this2 = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/userProfile.json').then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get("/userProfile.json").then(function (response) {
         _this2.profileInfo = response.data;
         _this2.showProfileInfo = true;
       })["catch"](function () {
@@ -2368,7 +2367,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "@charset \"UTF-8\";\n.clubCassette[data-v-1481c61a] {\n  margin-bottom: 16px;\n  border-radius: 5px;\n  background: #f1f1f1;\n  box-shadow: 0 0 5px #808080;\n}\n.clubCassette.isFixedSchedule[data-v-1481c61a] {\n  border: 1px solid #c5001a;\n  box-shadow: 0 0 5px #c5001a;\n}\n.clubCassette .cassetteArea[data-v-1481c61a] {\n  padding: 30px 50px 0;\n}\n.clubCassette .cassetteArea .eventTop[data-v-1481c61a] {\n  display: flex;\n  align-items: center;\n  margin-bottom: 10px;\n}\n.clubCassette .cassetteArea .eventTop .clubName[data-v-1481c61a] {\n  border: 5px solid #c5001a;\n  color: #c5001a;\n  border-radius: 5px;\n  margin-right: 25px;\n  padding: 3px 10px;\n}\n.clubCassette .cassetteArea .eventTop .eventName[data-v-1481c61a] {\n  font-size: 18px;\n}\n.clubCassette .cassetteArea .hostProfile[data-v-1481c61a] {\n  display: flex;\n  align-items: center;\n  margin-bottom: 18px;\n}\n.clubCassette .cassetteArea .hostProfile .hostImg[data-v-1481c61a] {\n  height: 50px;\n  width: 50px;\n  margin-right: 10px;\n}\n.clubCassette .cassetteArea .hostProfile .hostImg .imgItem[data-v-1481c61a] {\n  height: 100%;\n  border-radius: 50%;\n}\n.clubCassette .cassetteArea .hostProfile .hostDetail .hostName[data-v-1481c61a] {\n  font-weight: bold;\n  font-size: 16px;\n}\n.clubCassette .cassetteArea .hostProfile .hostDetail .postDate[data-v-1481c61a] {\n  color: #808080;\n}\n.clubCassette .cassetteArea .fixAppealText[data-v-1481c61a] {\n  font-size: 16px;\n  line-height: 1.3;\n}\n.clubCassette .participateButtonWrapper[data-v-1481c61a] {\n  display: flex;\n  justify-content: center;\n  margin-top: 20px;\n  padding: 0 50px 30px;\n}\n.clubCassette .participateButtonWrapper .participateButton[data-v-1481c61a] {\n  background-color: #c5001a;\n  color: #ffffff;\n  height: 48px;\n  width: 300px;\n  border-radius: 10px;\n  border: none;\n  font-weight: bold;\n}\n.clubCassette .inputDateArea[data-v-1481c61a] {\n  margin-top: 20px;\n}\n.clubCassette .inputDateArea .accordionButton[data-v-1481c61a] {\n  height: 30px;\n  cursor: pointer;\n  background: #113743;\n  border-radius: 0 0 5px 5px;\n  content: \"日程を入力する\";\n}\n\n/* 外側の枠の高さを設定 */\n.accordionWrapper[data-v-1481c61a] {\n  max-height: 0;\n  overflow: hidden;\n  transition: max-height 0.3s linear;\n}\n.accordionWrapper .accordionContents[data-v-1481c61a] {\n  overflow: hidden;\n  transform: translateY(-100%);\n  transition: transform 0.3s linear;\n}\n.accordionWrapper .accordionContents .accordionInner[data-v-1481c61a] {\n  overflow: hidden;\n  transform: translateY(100%);\n  transition: transform 0.3s linear;\n}\n.accordionWrapper.isExpand[data-v-1481c61a] {\n  max-height: 100%;\n  transition: max-height 0.4s linear;\n}\n.accordionWrapper.isExpand .accordionContents[data-v-1481c61a] {\n  transform: translateY(0);\n  transition: transform 0.2s linear;\n}\n.accordionWrapper.isExpand .accordionContents .accordionInner[data-v-1481c61a] {\n  transform: translateY(0);\n  transition: transform 0.2s linear;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "@charset \"UTF-8\";\n.clubCassette[data-v-1481c61a] {\n  margin-bottom: 16px;\n  border-radius: 5px;\n  background: #ffffff;\n  box-shadow: 0 0 5px #808080;\n}\n.clubCassette.isFixedSchedule[data-v-1481c61a] {\n  border: 1px solid #fb6542;\n  box-shadow: 0 0 5px #fb6542;\n}\n.clubCassette .cassetteArea[data-v-1481c61a] {\n  padding: 30px 50px 0;\n}\n.clubCassette .cassetteArea .eventTop[data-v-1481c61a] {\n  display: flex;\n  align-items: center;\n  margin-bottom: 10px;\n}\n.clubCassette .cassetteArea .eventTop .clubName[data-v-1481c61a] {\n  border: 5px solid #fb6542;\n  color: #fb6542;\n  border-radius: 5px;\n  margin-right: 25px;\n  padding: 3px 10px;\n}\n.clubCassette .cassetteArea .eventTop .eventName[data-v-1481c61a] {\n  font-size: 18px;\n}\n.clubCassette .cassetteArea .hostProfile[data-v-1481c61a] {\n  display: flex;\n  align-items: center;\n  margin-bottom: 18px;\n}\n.clubCassette .cassetteArea .hostProfile .hostImg[data-v-1481c61a] {\n  height: 50px;\n  width: 50px;\n  margin-right: 10px;\n}\n.clubCassette .cassetteArea .hostProfile .hostImg .imgItem[data-v-1481c61a] {\n  height: 100%;\n  border-radius: 50%;\n}\n.clubCassette .cassetteArea .hostProfile .hostDetail .hostName[data-v-1481c61a] {\n  font-weight: bold;\n  font-size: 16px;\n}\n.clubCassette .cassetteArea .hostProfile .hostDetail .postDate[data-v-1481c61a] {\n  color: #808080;\n}\n.clubCassette .cassetteArea .fixAppealText[data-v-1481c61a] {\n  font-size: 16px;\n  line-height: 1.3;\n}\n.clubCassette .participateButtonWrapper[data-v-1481c61a] {\n  display: flex;\n  justify-content: center;\n  margin-top: 20px;\n  padding: 0 50px 30px;\n}\n.clubCassette .participateButtonWrapper .participateButton[data-v-1481c61a] {\n  background-color: #fb6542;\n  color: #ffffff;\n  height: 48px;\n  width: 300px;\n  border-radius: 10px;\n  border: none;\n  font-weight: bold;\n}\n.clubCassette .inputDateArea[data-v-1481c61a] {\n  margin-top: 20px;\n}\n.clubCassette .inputDateArea .accordionButton[data-v-1481c61a] {\n  height: 30px;\n  cursor: pointer;\n  background: #113743;\n  border-radius: 0 0 5px 5px;\n  content: \"日程を入力する\";\n}\n\n/* 外側の枠の高さを設定 */\n.accordionWrapper[data-v-1481c61a] {\n  max-height: 0;\n  overflow: hidden;\n  transition: max-height 0.3s linear;\n}\n.accordionWrapper .accordionContents[data-v-1481c61a] {\n  overflow: hidden;\n  transform: translateY(-100%);\n  transition: transform 0.3s linear;\n}\n.accordionWrapper .accordionContents .accordionInner[data-v-1481c61a] {\n  overflow: hidden;\n  transform: translateY(100%);\n  transition: transform 0.3s linear;\n}\n.accordionWrapper.isExpand[data-v-1481c61a] {\n  max-height: 100%;\n  transition: max-height 0.4s linear;\n}\n.accordionWrapper.isExpand .accordionContents[data-v-1481c61a] {\n  transform: translateY(0);\n  transition: transform 0.2s linear;\n}\n.accordionWrapper.isExpand .accordionContents .accordionInner[data-v-1481c61a] {\n  transform: translateY(0);\n  transition: transform 0.2s linear;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -2392,7 +2391,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".wrapper[data-v-bb962f12] {\n  display: flex;\n  justify-content: space-around;\n  height: 100%;\n}\n.wrapper .left[data-v-bb962f12] {\n  background: #f1f1f1;\n  flex-grow: 0.5;\n}\n.wrapper .center[data-v-bb962f12] {\n  padding-top: 30px;\n  width: 500px;\n  height: 100%;\n  border-left: 1px solid #113743;\n  border-right: 1px solid #113743;\n  flex-grow: 1.25;\n}\n.wrapper .right[data-v-bb962f12] {\n  flex-grow: 1.25;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".wrapper[data-v-bb962f12] {\n  display: flex;\n  justify-content: space-around;\n  height: 100%;\n}\n.wrapper .left[data-v-bb962f12] {\n  background: #ffffff;\n  flex-grow: 0.5;\n}\n.wrapper .center[data-v-bb962f12] {\n  padding-top: 30px;\n  width: 500px;\n  height: 100%;\n  border-left: 1px solid #113743;\n  border-right: 1px solid #113743;\n  flex-grow: 1.25;\n  overflow-y: scroll;\n}\n.wrapper .right[data-v-bb962f12] {\n  flex-grow: 1.25;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

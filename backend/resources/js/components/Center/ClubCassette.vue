@@ -54,7 +54,6 @@ export default {
   },
   methods: {
     toggleAccordion() {
-      console.log('ああああ')
       this.isOpenAccordion = !this.isOpenAccordion;
     }
   },
@@ -67,7 +66,7 @@ export default {
 .clubCassette {
   margin-bottom: 16px;
   border-radius: 5px;
-  background: #f1f1f1;
+  background: #ffffff;
   box-shadow: 0 0 5px #808080;
   &.isFixedSchedule {
     border: 1px solid $primary;

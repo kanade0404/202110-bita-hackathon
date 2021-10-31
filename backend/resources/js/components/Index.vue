@@ -75,7 +75,7 @@ export default {
   justify-content: space-around;
   height: 100%;
   .left {
-    background: #f1f1f1;
+    background: #ffffff;
     flex-grow: 0.5;
   }
   .center {
@@ -85,6 +85,7 @@ export default {
     border-left: 1px solid $secondary;
     border-right: 1px solid $secondary;
     flex-grow: 1.25;
+    overflow-y: scroll;
   }
   .right {
     flex-grow: 1.25;
