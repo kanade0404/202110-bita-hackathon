@@ -41,7 +41,7 @@ export default {
   methods: {
     getEventInfo() {
       axios
-        .get('/event.json')
+        .get('/api/events')
         .then((response) => {
           response.data.event_info.forEach((eventData, index) => {
             this.$set(this.eventDataList, index, eventData);
@@ -54,7 +54,7 @@ export default {
     },
     getUserProfile() {
       axios
-        .get(`/userProfile.json`)
+        .get(`/api/user/${this.userId}`)
         .then((response) => {
           this.profileInfo = response.data;
           this.showProfileInfo = true;
