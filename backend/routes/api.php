@@ -20,6 +20,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/login', [\App\Http\Controllers\LoginController::class, "login"]);
 Route::post('/logout', [\App\Http\Controllers\LoginController::class, "logout"]);
 Route::get('/user/{id}', [\App\Http\Controllers\MeController::class, "index"]);
+Route::get('/events/{id}', [\App\Http\Controllers\EventController::class, "index"]);
+Route::get("/events", [\App\Http\Controllers\EventScheduleController::class, "index"]);
+Route::post('/event', [\App\Http\Controllers\MemberScheduleController::class, "index"]);
 Route::group(['middleware' => ['auth:sanctum']], function () {
     //
 });
