@@ -1,5 +1,5 @@
 <template>
-  <div class="rightColumn">
+  <div class="rightColumn" v-if="isEventListSet">
     <h2 class="calendarTitle">あなたの部活カレンダー</h2>
     <schedule-calendar
       :registeredEventList="eventList"
@@ -33,6 +33,7 @@ export default {
     return {
       eventList: [],
       selectedItemId: '',
+      isEventListSet: false,
     }
   },
   created () {
@@ -47,7 +48,7 @@ export default {
         .get(`/api/events/${this.userId}`)
         .then((response) => {
           this.eventList = [...response.data];
-          console.log(this.eventList);
+          this.isEventListSet = true;
         })
         .catch(() => {
           throw Error;
@@ -67,6 +68,7 @@ export default {
 
 .calendarTitle {
   font-size: 16px;
+  font-weight: bold;
   text-align: center;
   margin: 24px 24px 0;
 }

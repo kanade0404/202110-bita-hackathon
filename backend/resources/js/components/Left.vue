@@ -76,8 +76,8 @@ export default {
     width: 150px;
 
     .club {
-      color: $font-white-color;
-      background: $secondary;
+      color: $font-base-color;
+      background: $body-bg;
       font-size: 14px;
       line-height: 35px;
       height: 35px;

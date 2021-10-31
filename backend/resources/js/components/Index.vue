@@ -54,7 +54,7 @@ export default {
     },
     getUserProfile() {
       axios
-        .get(`/api/user/${userId}`)
+        .get(`/api/user/${this.userId}`)
         .then((response) => {
           this.profileInfo = response.data;
           this.showProfileInfo = true;
@@ -82,8 +82,6 @@ export default {
     padding-top: 30px;
     width: 500px;
     height: 100%;
-    border-left: 1px solid $secondary;
-    border-right: 1px solid $secondary;
     flex-grow: 1.25;
     overflow-y: scroll;
   }

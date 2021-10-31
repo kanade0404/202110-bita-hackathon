@@ -76,6 +76,10 @@ export default {
   mounted () {
     this.$refs.calendar.checkChange()
   },
+  watch: {
+    registeredEventList() {
+    } 
+  },
   methods: {
     setToday () {
       this.focus = ''
@@ -99,9 +103,12 @@ export default {
 
       this.registeredEventList.forEach(element => {
         // datetimeを加工してYYYY-MM-DD形式にして first に設定する
-        const splitDate = element.datetime.split('/');
+        const splitDate = element.datetime.split('\u6708');
         const targetMonth = splitDate[0];
-        const targetDate = splitDate[1].split('（')[0];
+        const targetDate = splitDate[1].split('\u65e5')[0];
+
+        console.log(targetMonth);
+        console.log(targetDate);
 
         const nowDate = new Date();
         const nowYear = nowDate.getFullYear();
