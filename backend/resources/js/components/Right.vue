@@ -23,55 +23,76 @@ export default {
     ScheduleCalendar,
     RegisteredEventList,
   },
+  props: {
+    userId: {
+      type: String,
+      required: true,
+    }
+  },
   data() {
     return {
-      eventList: [
+      eventList: [],
+      selectedItemId: '',
+    }
+  },
+  created () {
+    this.getRegisterdEventList();
+  },
+  methods: {
+    calendarSelected(id) {
+      this.selectedItemId = id;
+    },
+    getRegisterdEventList() {
+      const data = [
         {
           event_id: '001',
           event_name: '休日ボドゲ会',
           event_description: '休日ボドゲ会やります',
           club_name: 'ボドゲ部',
-          datetime: '2021年11月2日 19:00〜'
+          datetime: '10/31（日）11:00〜17:00',
+          place: 'シコウラボ',
         },
         {
           event_id: '002',
           event_name: 'アルティメット人狼やりませんか？',
           event_description: '休日ボドゲ会やります',
           club_name: 'ボドゲ部',
-          datetime: '2021年11月2日 19:00〜'
+          datetime: '11/3（水）11:00〜17:00',
+          place: 'INDIGO',
         },
         {
           event_id: '003',
-          event_name: 'アルティメット人狼やりませんか？',
+          event_name: 'テニス部',
           event_description: '休日ボドゲ会やります',
-          club_name: 'ボドゲ部',
-          datetime: '2021年11月2日 19:00〜'
+          club_name: 'テニス部',
+          datetime: '11/13（土）11:00〜17:00',
+          place: '門前仲町コート',
         },
         {
           event_id: '004',
           event_name: 'アルティメット人狼やりませんか？',
           event_description: '休日ボドゲ会やります',
           club_name: 'ボドゲ部',
-          datetime: '2021年11月2日 19:00〜'
+          datetime: '11/22（月）11:00〜17:00'
         },
         {
           event_id: '005',
           event_name: 'アルティメット人狼やりませんか？',
           event_description: '休日ボドゲ会やります',
           club_name: 'ボドゲ部',
-          datetime: '2021年11月2日 19:00〜'
+          datetime: '9/27（金）11:00〜17:00'
         },
-      ],
-      selectedItemId: '',
-    }
-  },
-  mounted () {
-    // TODO: 登録済みイベント取得APIを叩いてeventListに情報設定
-
-  },
-  methods: {
-    calendarSelected(id) {
-      this.selectedItemId = id;
+      ];
+      this.eventList = [...data];
+      // axios
+      //   .get(`/api/events/${this.userId}`)
+      //   .then((response) => {
+      //     this.eventList = [...response.data];
+      //     console.log(this.eventList);
+      //   })
+      //   .catch(() => {
+      //     throw Error;
+      //   });
     },
   },
 }

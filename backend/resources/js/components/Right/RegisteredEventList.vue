@@ -25,10 +25,6 @@ export default {
       default: '',
     },
   },
-  data() {
-    return {
-    }
-  },
   methods: {
     isSelected(itemId) {
       return itemId === this.selectedItemId;

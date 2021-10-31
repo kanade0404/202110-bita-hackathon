@@ -41,7 +41,7 @@ export default {
   methods: {
     getEventInfo() {
       axios
-        .get('/events')
+        .get('/api/events')
         .then((response) => {
           response.data.event_info.forEach((eventData, index) => {
             this.$set(this.eventDataList, index, eventData);
