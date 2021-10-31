@@ -24,6 +24,6 @@ export default {
 
 <style lang="scss" scoped>
 .centerWrapper {
-  padding: 0 80px;
+  padding: 0 40px;
 }
 </style>

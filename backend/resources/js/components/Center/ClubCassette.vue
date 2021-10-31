@@ -9,7 +9,7 @@
         <div class="hostImg"><img class="imgItem" :src="eventData.event.create_user.thumbnail_path"></div>
         <div class="hostDetail">
           <div class="hostName">{{  eventData.event.create_user.name}}</div>
-          <div class="postDate">{{  eventData.event.create_user.name}}</div>
+          <div class="postDate">{{ eventData.event.create_date }} {{ eventData.event.create_time }}</div>
         </div>
       </div>
       <p class="fixAppealText">
@@ -22,10 +22,24 @@
       <button class="participateButton">やっぱり参加できる！</button>
     </div>
     <div v-else class="inputDateArea">
-      <div class="accordionButton" @click="toggleAccordion"></div>
+      <div class="accordionButton" @click="toggleAccordion">行ける日を入力してね</div>
       <div :class="{ isExpand: isOpenAccordion }" class="accordionWrapper">
         <div class="accordionContents">
-           <div class="accordionInner">アコーディオンするコンテンツ</div>
+           <div class="accordionInner">
+             <div class="adjustContents">
+                <div class="adjustSelect">
+                  <AdjustTitle title="日にち候補" />
+                  <AdjustArea :event-schedules="eventData.event_schedules" />
+                </div>
+                <div class="adjustComment">
+                  <AdjustTitle title="コメント" />
+                  <div class="textArea"><textarea class="textItem"></textarea></div>
+                </div>
+                <div class="adjustSubmit">
+                  <button class="submitButton">入力する</button>
+                </div>
+             </div>
+           </div>
         </div>
       </div>
     </div>
@@ -33,8 +47,15 @@
 </template>
 
 <script>
+import AdjustTitle from './AdjustTitle';
+import AdjustArea from './AdjustArea.vue';
+
 export default {
   name: 'clubCassette',
+  components: {
+    AdjustTitle,
+    AdjustArea,
+  },
   props: {
     eventData: {
       type: Object,
@@ -86,7 +107,7 @@ export default {
         padding: 3px 10px;
       }
       .eventName {
-        font-size: 18px;
+        font-size: 20px;
       }
     }
     .hostProfile {
@@ -113,8 +134,8 @@ export default {
       }
     }
     .fixAppealText {
-      font-size: 16px;
-      line-height: 1.3;
+      font-size: 18px;
+      line-height: 1.6;
     }
   }
   .participateButtonWrapper {
@@ -137,9 +158,18 @@ export default {
     .accordionButton {
       height: 30px;
       cursor: pointer;
-      background: $secondary;
-      border-radius: 0 0 5px 5px;
-      content: '日程を入力する';
+      background: #113743;
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: bold;
+      line-height: 30px;
+      text-align: center;
+      &::after {
+        content: '▼';
+        color: #ffffff;
+        position: relative;
+        right: -14px;
+      }
     }
   }
 }
@@ -147,26 +177,57 @@ export default {
 .accordionWrapper {
   max-height: 0;
   overflow: hidden;
-  transition: max-height .3s linear;
+  transition: max-height .05s linear;
   .accordionContents {
     overflow: hidden;
     transform: translateY(-100%);
-    transition: transform .3s linear;
+    transition: transform .05s linear;
     .accordionInner {
       overflow: hidden;
       transform: translateY(100%);
-      transition: transform .3s linear;
+      transition: transform .05s linear;
+      padding-top: 24px;
     }
   }
   &.isExpand {
     max-height: 100%;
-    transition: max-height .4s linear;
+    transition: max-height .05s linear;
     .accordionContents {
       transform: translateY(0);
-      transition: transform .2s linear;
+      transition: transform .05s linear;
       .accordionInner {
         transform: translateY(0);
-        transition: transform .2s linear;
+        transition: transform .05s linear;
+        .adjustContents {
+          .adjustSelect {
+            margin-bottom: 24px;
+          }
+          .adjustComment {
+            .textArea {
+              width: 310px;
+              margin: 0 auto;
+              border-radius: 5px;
+              .textItem {
+                width: 100%;
+              }
+            }
+          }
+          .adjustSubmit {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            padding: 0 50px 30px;
+            .submitButton {
+              background-color: $primary;
+              color: #ffffff;
+              height: 48px;
+              width: 300px;
+              border-radius: 10px;
+              border: none;
+              font-weight: bold;
+            }
+          }
+        }
       }
     }
   }
