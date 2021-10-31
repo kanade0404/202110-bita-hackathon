@@ -25,5 +25,7 @@ class DatabaseSeeder extends Seeder
             FixEventNotificationConfigSeeder::class,
         ]);
         DB::table("events")->where("id","=", 2)->update(["fix_schedule_id" => 4]);
+        DB::table("events")->where("id","=", 3)->update(["fix_schedule_id" => 7]);
+        DB::table("events")->where("id","=", 4)->update(["fix_schedule_id" => 15]);
     }
 }
