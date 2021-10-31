@@ -129,3 +129,5 @@ ide-helper:
 	docker compose exec app php artisan ide-helper:generate
 	docker compose exec app php artisan ide-helper:meta
 	docker compose exec app php artisan ide-helper:models --nowrite
+create-swagger-ui:
+	docker compose exec app ./vendor/bin/openapi ./app --output ./public/api/openapi.json
