@@ -1,0 +1,18 @@
+runtime: php73
+
+handlers:
+  - url: /css
+    static_dir: public/css
+  - url: /js
+    static_dir: public/js
+
+env_variables:
+  ## Put production environment variables here.
+  APP_KEY: base64:0JrqJWtP0NOyhN5cYcNMuQtzpXrtMH39qswaH4bYQUo=
+  APP_STORAGE: /tmp
+  VIEW_COMPILED_PATH: /tmp
+  SESSION_DRIVER: cookie
+  DB_DATABASE: laravel_local
+  DB_USERNAME: root
+  DB_PASSWORD: 7HCxBbCewmhOgtsg
+  DB_SOCKET: "/cloudsql/bita-hackathon:asia-northeast1:app"
