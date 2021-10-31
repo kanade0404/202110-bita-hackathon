@@ -7,7 +7,7 @@
       <Center v-if="showEventList" :event-data-list="eventDataList" />
     </div>
     <div class="right">
-      <Right />
+      <Right :user-id="userId" />
     </div>
   </div>
 </template>
@@ -53,15 +53,21 @@ export default {
         })
     },
     getUserProfile() {
-      axios
-        .get(`/user/${userId}`)
-        .then((response) => {
-          this.profileInfo = response.data;
-          this.showProfileInfo = true;
-        })
-        .catch(() => {
-          throw Error;
-        })
+      this.profileInfo = {
+        "user_name": "さかってぃー",
+        "club_name": ["ボドげ","お茶ぶ","テニスぶ","ハッカソン部"],
+        "thumbnail_path": "https://mikan.bita.jp/img/members_img/15656647750seiya_sakata_mikan.jpg"
+      };
+      this.showProfileInfo = true;
+      // axios
+      //   .get(`/api/user/${userId}`)
+      //   .then((response) => {
+      //     this.profileInfo = response.data;
+      //     this.showProfileInfo = true;
+      //   })
+      //   .catch(() => {
+      //     throw Error;
+      //   })
     },
   },
 }
