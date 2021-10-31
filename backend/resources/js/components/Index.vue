@@ -39,7 +39,6 @@ export default {
       showEventList: false,
       eventDataList: [],
       postData: {
-        userId: this.userId,
         eventParticipantInfo: [],
         comment: '',
       },
@@ -87,7 +86,7 @@ export default {
         // 中身があれば、同じidがある場合にpushする
         let pushedFlg = false;
         this.postData.eventParticipantInfo.forEach((scheduleObj) => {
-          if (scheduleObj.event_schedule_id === value.event_schedule_id) {
+          if (!pushedFlg && scheduleObj.event_schedule_id === value.event_schedule_id) {
             scheduleObj.participation_status = value.participation_status;
             pushedFlg = true;
           }
@@ -102,7 +101,7 @@ export default {
     },
     clickPostButton() {
       const param = {
-        user_id: this.postData.userId,
+        user_id: this.userId,
         event_participant_info: this.postData.eventParticipantInfo,
         comment: this.postData.comment,
       };
