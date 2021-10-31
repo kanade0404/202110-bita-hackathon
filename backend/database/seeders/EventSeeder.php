@@ -14,7 +14,9 @@ class EventSeeder extends Seeder
      */
     public function run()
     {
-        DB::table("events")->insert(["name" => "宇宙カタン", "description" => "宇宙カタンやります", "club_id" => "1", "create_user_id" => 1, "place" => "シコウラボ"]);
-        DB::table("events")->insert(["name" => "アルティメット人狼", "description" => "アルティメット人狼やります", "club_id" => "16", "create_user_id" => 2, "place" => "シコウラボ and zoom",]);
+        DB::table("events")->insert(["name" => "宇宙カタン", "description" => "宇宙カタンやります", "club_id" => "1", "create_user_id" => 1, "place" => "シコウラボ", "created_at" => "2021-10-01 11:00:00"]);
+        DB::table("events")->insert(["name" => "アルティメット人狼", "description" => "アルティメット人狼やります", "club_id" => "16", "create_user_id" => 2, "place" => "シコウラボ and zoom", "created_at" => "2021-10-04 15:30:00"]);
+        DB::table("events")->insert(["name" => "ドミニオン", "description" => "ドミニオンやるよ", "club_id" => "1", "create_user_id" => 1, "place" => "シコウラボ", "created_at" => "2021-10-06 17:30:00"]);
+        DB::table("events")->insert(["name" => "dixitやるよ", "description" => "dixitやりたい人集まれ！", "club_id" => "1", "create_user_id" => 1, "place" => "シコウラボ", "created_at" => "2021-10-08 19:30:00"]);
     }
 }
