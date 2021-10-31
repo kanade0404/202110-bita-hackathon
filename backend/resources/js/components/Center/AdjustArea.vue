@@ -1,6 +1,12 @@
 <template>
   <ul class="wrapper">
-    <AdjustItem v-for="eventSchedule in eventSchedules" :key="eventSchedule.id" :event-schedule="eventSchedule" />
+    <AdjustItem
+      v-for="eventSchedule in eventSchedules"
+      :key="eventSchedule.id"
+      :event-schedule="eventSchedule"
+      :event-id="eventId"
+      @changePostList="$listeners['changePostList']"
+    />
   </ul>
 </template>
 
@@ -16,7 +22,11 @@ export default {
     eventSchedules: {
       type: Array,
       required: true,
-    }
+    },
+    eventId: {
+      type: String,
+      required: true,
+    },
   }
 }
 </script>

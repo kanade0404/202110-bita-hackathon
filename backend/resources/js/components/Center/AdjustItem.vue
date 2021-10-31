@@ -6,23 +6,45 @@
     </div>
     <div class="select">
       <div :id="eventSchedule.id" class="selectMark" data-status="Y" @click="clickSelect">○</div>
-      <div :id="eventSchedule.id" class="selectMark" data-status="N" @click="clickSelect">△</div>
-      <div :id="eventSchedule.id" class="selectMark" data-status="U" @click="clickSelect">×</div>
+      <div :id="eventSchedule.id" class="selectMark" data-status="U" @click="clickSelect">△</div>
+      <div :id="eventSchedule.id" class="selectMark" data-status="N" @click="clickSelect">×</div>
     </div>
   </li>
 </template>
 
 <script>
+let nowShowEventId = null;
+
 export default {
   name: 'AdjustItem',
   props: {
     eventSchedule: {
       type: Object,
       required: true,
+    },
+    eventId: {
+      type: String,
+      required: true,
+    },
+  },
+  data() {
+    return {
+      nowShowEventId: this.eventId,
     }
+  },
+  mounted() {
+    nowShowEventId = this.eventId;
   },
   methods: {
     clickSelect(event) {
+      this.changeSelectClass(event);
+
+      this.$emit('changePostList', {
+        event_schedule_id: event.target.id,
+        participation_status: event.target.dataset.status,
+      });
+    },
+    changeSelectClass(event) {
       const selectElm = event.target;
 
       if (selectElm.parentNode.querySelector('.isSelected')) {
@@ -30,7 +52,7 @@ export default {
       }
 
       selectElm.classList.add('isSelected');
-    },
+    }
   },
 }
 </script>
