@@ -32,6 +32,7 @@ class CreateTable extends Migration
             $table->foreign("club_id")->references("id")->on("clubs");
             $table->unsignedBigInteger("create_user_id");
             $table->foreign("create_user_id")->references("id")->on("users");
+            $table->string("place")->nullable();
             $table->timestamps();
         });
         /**
@@ -55,6 +56,7 @@ class CreateTable extends Migration
             $table->time("end_time");
             $table->unsignedBigInteger("event_id");
             $table->foreign("event_id")->references("id")->on("events");
+            $table->text("comment")->nullable();
             $table->timestamps();
         });
         /**
@@ -66,8 +68,7 @@ class CreateTable extends Migration
             $table->foreign("user_id")->references("id")->on("users");
             $table->unsignedBigInteger("event_schedule_id");
             $table->foreign("event_schedule_id")->references("id")->on("event_schedules");
-            $table->enum("participation_status", ["PARTICIPATION", "NO_PARTICIPATION", "UNKNOWN"]);
-            $table->text("comment");
+            $table->enum("participation_status", ["Y", "N", "U"]);
             $table->timestamps();
         });
         Schema::create('fix_event_notification_configs', function (Blueprint $table) {

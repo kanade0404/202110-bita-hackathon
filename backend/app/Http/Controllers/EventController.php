@@ -10,23 +10,7 @@ class EventController extends Controller
 {
     public function index(Request $request, $id)
     {
-        $data = DB::table("events")->select(DB::raw("events.id as event_id, events.name as event_name, events.description as description, clubs.name as club_name, event_date, start_time, end_time"))->join("event_schedules", "events.id", "=", "event_schedules.event_id")
-            ->join("member_schedules", "member_schedules.event_schedule_id", "=", "event_schedules.id")
-            ->join("clubs", "clubs.id", "=", "events.club_id")
-            ->join("club_members", "club_members.club_id", "=", "clubs.id")
-            ->join("users", "users.id", "=", "club_members.user_id")
-            ->where("events.fix_schedule_id","!=", null)
-            ->where("users.id", "=", $id)
-            ->get()
-            ->toArray();
-        return response(array_map(function ($d) {
-            return [
-                "event_id" => $d->event_id,
-                "event_name" => $d->event_name,
-                "event_description" => $d->description,
-                "club_name" => $d->club_name,
-                "datetime" => $d->event_date . $d->start_time . $d->end_time,
-            ];
-        }, $data));
+        $data = DB::select("SELECT events.id AS event_id,events.name AS event_name,events.description AS event_description,clubs.`name` AS club_name,(SELECT CONCAT(DATE_FORMAT(event_schedules.event_date,'%m月%d日'),'(',ELT(WEEKDAY(event_schedules.event_date)+1,'月','火','水','木','金','土','日'),')',TIME_FORMAT(start_time,'%H:%i'),'〜',TIME_FORMAT(end_time,'%H:%i'))AS date FROM event_schedules JOIN events ON events.id=event_schedules.event_id WHERE event_schedules.id=events.fix_schedule_id)AS datetime FROM events INNER JOIN event_schedules ON event_schedules.id=events.fix_schedule_id INNER JOIN clubs ON clubs.id=events.club_id WHERE events.id IN(SELECT events.id FROM events INNER JOIN event_schedules ON events.id=event_schedules.event_id INNER JOIN member_schedules ON member_schedules.event_schedule_id=event_schedules.id INNER JOIN clubs ON clubs.id=events.club_id WHERE member_schedules.user_id=2 AND fix_schedule_id IS NOT NULL GROUP BY events.id);");
+        return response($data);
     }
 }
