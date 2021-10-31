@@ -1,5 +1,5 @@
 <template>
-  <div class="rightColumn">
+  <div class="rightColumn" v-if="isEventListSet">
     <h2 class="calendarTitle">あなたの部活カレンダー</h2>
     <schedule-calendar
       :registeredEventList="eventList"
@@ -23,55 +23,36 @@ export default {
     ScheduleCalendar,
     RegisteredEventList,
   },
-  data() {
-    return {
-      eventList: [
-        {
-          event_id: '001',
-          event_name: '休日ボドゲ会',
-          event_description: '休日ボドゲ会やります',
-          club_name: 'ボドゲ部',
-          datetime: '2021年11月2日 19:00〜'
-        },
-        {
-          event_id: '002',
-          event_name: 'アルティメット人狼やりませんか？',
-          event_description: '休日ボドゲ会やります',
-          club_name: 'ボドゲ部',
-          datetime: '2021年11月2日 19:00〜'
-        },
-        {
-          event_id: '003',
-          event_name: 'アルティメット人狼やりませんか？',
-          event_description: '休日ボドゲ会やります',
-          club_name: 'ボドゲ部',
-          datetime: '2021年11月2日 19:00〜'
-        },
-        {
-          event_id: '004',
-          event_name: 'アルティメット人狼やりませんか？',
-          event_description: '休日ボドゲ会やります',
-          club_name: 'ボドゲ部',
-          datetime: '2021年11月2日 19:00〜'
-        },
-        {
-          event_id: '005',
-          event_name: 'アルティメット人狼やりませんか？',
-          event_description: '休日ボドゲ会やります',
-          club_name: 'ボドゲ部',
-          datetime: '2021年11月2日 19:00〜'
-        },
-      ],
-      selectedItemId: '',
+  props: {
+    userId: {
+      type: String,
+      required: true,
     }
   },
-  mounted () {
-    // TODO: 登録済みイベント取得APIを叩いてeventListに情報設定
-
+  data() {
+    return {
+      eventList: [],
+      selectedItemId: '',
+      isEventListSet: false,
+    }
+  },
+  created () {
+    this.getRegisterdEventList();
   },
   methods: {
     calendarSelected(id) {
       this.selectedItemId = id;
+    },
+    getRegisterdEventList() {
+      axios
+        .get(`/api/events/${this.userId}`)
+        .then((response) => {
+          this.eventList = [...response.data];
+          this.isEventListSet = true;
+        })
+        .catch(() => {
+          throw Error;
+        });
     },
   },
 }
@@ -87,6 +68,7 @@ export default {
 
 .calendarTitle {
   font-size: 16px;
+  font-weight: bold;
   text-align: center;
   margin: 24px 24px 0;
 }

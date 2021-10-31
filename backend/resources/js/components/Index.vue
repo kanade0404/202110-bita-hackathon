@@ -7,7 +7,7 @@
       <Center v-if="showEventList" :event-data-list="eventDataList" />
     </div>
     <div class="right">
-      <Right />
+      <Right :user-id="userId" />
     </div>
   </div>
 </template>
@@ -82,8 +82,6 @@ export default {
     padding-top: 30px;
     width: 500px;
     height: 100%;
-    border-left: 1px solid $secondary;
-    border-right: 1px solid $secondary;
     flex-grow: 1.25;
     overflow-y: scroll;
   }

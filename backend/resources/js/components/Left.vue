@@ -6,6 +6,7 @@
       <div class="centerItem name">{{ profileInfo.user_name }}</div>
     </div>
     <div>
+      <h2 class="profileTitle">所属部</h2>
       <ul class="clubList">
         <li v-for="clubName in profileInfo.club_name" :key="clubName"  class="centerItem club"><span>{{ clubName }}</span></li>
       </ul>
@@ -27,8 +28,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../sass/variables';
+
 .profileWrapper {
   padding-top: 30px;
+
   .serviceLogo {
     margin: 0 auto;
     width: 160px;
@@ -39,12 +43,14 @@ export default {
   }
   .profileDetail {
     width: 210px;
-    margin: 0 auto;
+    margin: 12px auto 0;
+
     .profileImg {
       position:relative;
       overflow: hidden;
       width:100px;
       margin: 0 auto;
+
       .profileImgItem {
         width:100%;
         border-radius:50%;
@@ -52,27 +58,37 @@ export default {
     }
   }
   .centerItem {
-    border: 1px solid #c5beba;
     border-radius: 5px;
-    margin: 10px 0;
+    margin: 12px 0;
     text-align: center;
   }
   .name {
     font-size: 18px;
+    font-weight: bold;
     width: 210px;
     height: 48px;
-    line-height: 48px;
-    border: 1px solid #808080;
+    line-height: 40px;
+    margin-top: 24px;
   }
+
   .clubList {
     margin: 0 auto;
     width: 150px;
+
     .club {
-      font-size: 16px;
+      color: $font-base-color;
+      background: $body-bg;
+      font-size: 14px;
       line-height: 35px;
       height: 35px;
-      padding: 2px;
     }
+  }
+
+  .profileTitle {
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    margin: 36px 0 8px;
   }
 }
 </style>

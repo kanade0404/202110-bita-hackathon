@@ -25,10 +25,6 @@ export default {
       default: '',
     },
   },
-  data() {
-    return {
-    }
-  },
   methods: {
     isSelected(itemId) {
       return itemId === this.selectedItemId;
@@ -45,7 +41,7 @@ export default {
 }
 
 .eventItem {
-  border: 4px solid #e0e0e0;
+  border: 4px solid $body-bg;
   border-radius: 6px;
   padding: 6px 8px;
   text-align: center;
@@ -57,7 +53,7 @@ export default {
 
   &.is-selected {
     border-color: $primary;
-    background-color: #ffdbed;
+    background-color: #fff8e8;
     font-weight: bold;
   }
 }

@@ -71,11 +71,14 @@ export default {
       selectedEvent: {},
       selectedElement: null,
       events: [],
-      names: ['Meeting', 'Holiday', 'PTO', 'Travel', 'Event', 'Birthday', 'Conference', 'Party'],
     }
   },
   mounted () {
     this.$refs.calendar.checkChange()
+  },
+  watch: {
+    registeredEventList() {
+    } 
   },
   methods: {
     setToday () {
@@ -88,22 +91,31 @@ export default {
       this.$refs.calendar.next()
     },
     showEvent ({ nativeEvent, event }) {
-      console.log(event);
-
       nativeEvent.stopPropagation();
       this.$emit('calendarSelected', event.id);
     },
     updateRange ({ start, end }) {
       const events = []
 
-      const min = new Date(`${start.date}T00:00:00`)
-      const max = new Date(`${end.date}T23:59:59`)
+      const min = new Date(`${start.date}T00:00:00`);
+      const max = new Date(`${end.date}T23:59:59`);
       const eventCount = this.registeredEventList.length;
 
       this.registeredEventList.forEach(element => {
-        // TODO: datetimeを加工してYYYY-MM-DD形式にして first に設定する
-        const firstTimestamp = this.rnd(min.getTime(), max.getTime())
-        const first = new Date(firstTimestamp - (firstTimestamp % 900000))
+        // datetimeを加工してYYYY-MM-DD形式にして first に設定する
+        const splitDate = element.datetime.split('\u6708');
+        const targetMonth = splitDate[0];
+        const targetDate = splitDate[1].split('\u65e5')[0];
+
+        console.log(targetMonth);
+        console.log(targetDate);
+
+        const nowDate = new Date();
+        const nowYear = nowDate.getFullYear();
+        const nowMonth = nowDate.getMonth() + 1;
+
+        const targetYear = targetMonth >= nowMonth ? nowYear : nowYear + 1;
+        const first = `${targetYear}-${targetMonth}-${targetDate}`;
 
         events.push({
           id: element.event_id,
@@ -114,9 +126,6 @@ export default {
       });
 
       this.events = events;
-    },
-    rnd (a, b) {
-      return Math.floor((b - a + 1) * Math.random()) + a
     },
   },
 }
