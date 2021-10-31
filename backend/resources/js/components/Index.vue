@@ -4,7 +4,13 @@
       <Left v-if="showProfileInfo" :profile-info="profileInfo" />
     </div>
     <div class="center">
-      <Center v-if="showEventList" :event-data-list="eventDataList" />
+      <Center
+        v-if="showEventList"
+        :event-data-list="eventDataList"
+        @changePostList="changePostList"
+        @clickPostButton="clickPostButton"
+        @input="inputText"
+      />
     </div>
     <div class="right">
       <Right :user-id="userId" />
@@ -32,6 +38,11 @@ export default {
       showProfileInfo: false,
       showEventList: false,
       eventDataList: [],
+      postData: {
+        userId: this.userId,
+        eventParticipantInfo: [],
+        comment: '',
+      },
     };
   },
   created() {
@@ -58,6 +69,48 @@ export default {
         .then((response) => {
           this.profileInfo = response.data;
           this.showProfileInfo = true;
+        })
+        .catch(() => {
+          throw Error;
+        })
+    },
+    changePostList(value) {
+      // valueが空だったらthis.postData.eventParticipantInfoを空にする
+      if (!value) {
+        this.postData.eventParticipantInfo = [];
+        return;
+      }
+
+      if (this.postData.eventParticipantInfo.length === 0) {
+        this.postData.eventParticipantInfo.push(value);
+      } else {
+        // 中身があれば、同じidがある場合にpushする
+        let pushedFlg = false;
+        this.postData.eventParticipantInfo.forEach((scheduleObj) => {
+          if (scheduleObj.event_schedule_id === value.event_schedule_id) {
+            scheduleObj.participation_status = value.participation_status;
+            pushedFlg = true;
+          }
+          if (!pushedFlg) {
+            this.postData.eventParticipantInfo.push(value);
+          }
+        })
+      }
+    },
+    inputText(value) {
+      this.postData.comment = value.data;
+    },
+    clickPostButton() {
+      const param = {
+        user_id: this.postData.userId,
+        event_participant_info: this.postData.eventParticipantInfo,
+        comment: this.postData.comment,
+      };
+
+      axios
+        .post('/api/event', param)
+        .then((response) => {
+          console.log('成功')
         })
         .catch(() => {
           throw Error;

@@ -1,6 +1,13 @@
 <template>
   <ul class="centerWrapper">
-    <ClubCassette v-for="eventData in eventDataList" :key="eventData.event.id" :event-data="eventData" />
+    <ClubCassette
+      v-for="eventData in eventDataList"
+      :key="eventData.event.id"
+      :event-data="eventData"
+      @changePostList="$listeners['changePostList']"
+      @clickPostButton="$listeners['clickPostButton']"
+      @input="$listeners['input']"
+    />
   </ul>
 </template>
 

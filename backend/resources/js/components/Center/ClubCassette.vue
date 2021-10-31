@@ -29,14 +29,14 @@
              <div class="adjustContents">
                 <div class="adjustSelect">
                   <AdjustTitle title="日にち候補" />
-                  <AdjustArea :event-schedules="eventData.event_schedules" />
+                  <AdjustArea :event-id="eventData.event.id" :event-schedules="eventData.event_schedules" @changePostList="$listeners['changePostList']" />
                 </div>
                 <div class="adjustComment">
                   <AdjustTitle title="コメント" />
-                  <div class="textArea"><textarea class="textItem"></textarea></div>
+                  <div class="textArea"><textarea @input="inputComment" class="textItem"></textarea></div>
                 </div>
                 <div class="adjustSubmit">
-                  <button class="submitButton">入力する</button>
+                  <button class="submitButton" @click="clickPostButton">入力する</button>
                 </div>
              </div>
            </div>
@@ -76,7 +76,13 @@ export default {
   methods: {
     toggleAccordion() {
       this.isOpenAccordion = !this.isOpenAccordion;
-    }
+    },
+    clickPostButton() {
+      this.$emit('clickPostButton');
+    },
+    inputComment(value) {
+      this.$emit('input', value);
+    },
   },
 }
 </script>
@@ -108,6 +114,7 @@ export default {
       }
       .eventName {
         font-size: 20px;
+        font-weight: bold;
       }
     }
     .hostProfile {
@@ -125,7 +132,6 @@ export default {
       }
       .hostDetail {
         .hostName {
-          font-weight: bold;
           font-size: 16px;
         }
         .postDate {
@@ -177,38 +183,33 @@ export default {
 .accordionWrapper {
   max-height: 0;
   overflow: hidden;
-  transition: max-height .05s linear;
   .accordionContents {
     overflow: hidden;
     transform: translateY(-100%);
-    transition: transform .05s linear;
     .accordionInner {
       overflow: hidden;
       transform: translateY(100%);
-      transition: transform .05s linear;
       padding-top: 24px;
     }
   }
   &.isExpand {
     max-height: 100%;
-    transition: max-height .05s linear;
     .accordionContents {
       transform: translateY(0);
-      transition: transform .05s linear;
       .accordionInner {
         transform: translateY(0);
-        transition: transform .05s linear;
         .adjustContents {
           .adjustSelect {
             margin-bottom: 24px;
           }
           .adjustComment {
             .textArea {
-              width: 310px;
+              width: calc(100% - 200px);
               margin: 0 auto;
               border-radius: 5px;
               .textItem {
                 width: 100%;
+                border: 1px solid #c3c4c4;
               }
             }
           }
