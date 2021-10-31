@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\ClubMember;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,7 +16,14 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            ClubSeeder::class
+            ClubSeeder::class,
+            UserSeeder::class,
+            ClubMemberSeeder::class,
+            EventSeeder::class,
+            EventScheduleSeeder::class,
+            MemberScheduleSeeder::class,
+            FixEventNotificationConfigSeeder::class,
         ]);
+        DB::table("events")->where("id","=", 2)->update(["fix_schedule_id" => 4]);
     }
 }
