@@ -2132,6 +2132,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: 'clubCassette',
   props: {
@@ -2139,6 +2143,21 @@ __webpack_require__.r(__webpack_exports__);
       type: Object,
       required: false,
       "default": function _default() {}
+    }
+  },
+  data: function data() {
+    return {
+      isOpenAccordion: false
+    };
+  },
+  computed: {
+    isFixedSchedule: function isFixedSchedule() {
+      return Boolean(this.eventData.fix_event_schedule);
+    }
+  },
+  methods: {
+    toggleAccordion: function toggleAccordion() {
+      this.isOpenAccordion = !this.isOpenAccordion;
     }
   }
 });
@@ -2187,59 +2206,37 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      profileInfo: {
-        thumbnailPath: 'https://mikan.bita.jp/img/members_img/15656647750seiya_sakata_mikan.jpg',
-        userName: 'さかってぃーさん',
-        clubNames: ['ボドゲ', '映画', 'テニス', 'お茶ぶ']
-      },
+      profileInfo: {},
+      // プロフィール取得APIのパスに使う
+      userId: '1',
       showProfileInfo: false,
       showEventList: false,
-      eventDataList: [{
-        event: {
-          id: '',
-          name: '',
-          create_user: {
-            name: '',
-            thumbnail_path: ''
-          }
-        },
-        club: {
-          id: '',
-          name: ''
-        },
-        event_schedules: {
-          id: '',
-          participation_schedule: [{
-            date: '',
-            start_time: '',
-            end_time: ''
-          }]
-        },
-        fix_event_schedule: {
-          event_name: '',
-          date: '',
-          start_time: '',
-          end_time: ''
-        },
-        member_schedules: [{
-          user_name: '',
-          participation_status: ''
-        }]
-      }]
+      eventDataList: []
     };
   },
-  mounted: function mounted() {
+  created: function created() {
     this.getEventInfo();
+    this.getUserProfile();
   },
   methods: {
     getEventInfo: function getEventInfo() {
       var _this = this;
 
-      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/events').then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get('/event.json').then(function (response) {
         response.data.event_info.forEach(function (eventData, index) {
           _this.$set(_this.eventDataList, index, eventData);
         });
         _this.showEventList = true;
+      })["catch"](function () {
+        throw Error;
+      });
+    },
+    getUserProfile: function getUserProfile() {
+      var _this2 = this;
+
+      axios__WEBPACK_IMPORTED_MODULE_0___default().get("/userProfile.json").then(function (response) {
+        _this2.profileInfo = response.data;
+        _this2.showProfileInfo = true;
       })["catch"](function () {
         throw Error;
       });
@@ -2260,6 +2257,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+//
 //
 //
 //
@@ -2345,7 +2343,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".centerWrapper[data-v-a2e600d8] {\n  padding: 0 20px;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".centerWrapper[data-v-a2e600d8] {\n  padding: 0 80px;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -2369,7 +2367,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".clubCassette[data-v-1481c61a] {\n  margin-bottom: 16px;\n  border-radius: 5px;\n  padding: 12px 16px;\n  background: #f1f1f1;\n  box-shadow: 0 0 5px #808080;\n}\n.clubCassette .cassetteArea .eventTop[data-v-1481c61a] {\n  display: flex;\n}\n.clubCassette .cassetteArea .hostProfile[data-v-1481c61a] {\n  display: flex;\n}\n.clubCassette .skalCassette[data-v-1481c61a] {\n  height: 50px;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "@charset \"UTF-8\";\n.clubCassette[data-v-1481c61a] {\n  margin-bottom: 16px;\n  border-radius: 5px;\n  background: #ffffff;\n  box-shadow: 0 0 5px #808080;\n}\n.clubCassette.isFixedSchedule[data-v-1481c61a] {\n  border: 1px solid #fb6542;\n  box-shadow: 0 0 5px #fb6542;\n}\n.clubCassette .cassetteArea[data-v-1481c61a] {\n  padding: 30px 50px 0;\n}\n.clubCassette .cassetteArea .eventTop[data-v-1481c61a] {\n  display: flex;\n  align-items: center;\n  margin-bottom: 10px;\n}\n.clubCassette .cassetteArea .eventTop .clubName[data-v-1481c61a] {\n  border: 5px solid #fb6542;\n  color: #fb6542;\n  border-radius: 5px;\n  margin-right: 25px;\n  padding: 3px 10px;\n}\n.clubCassette .cassetteArea .eventTop .eventName[data-v-1481c61a] {\n  font-size: 18px;\n}\n.clubCassette .cassetteArea .hostProfile[data-v-1481c61a] {\n  display: flex;\n  align-items: center;\n  margin-bottom: 18px;\n}\n.clubCassette .cassetteArea .hostProfile .hostImg[data-v-1481c61a] {\n  height: 50px;\n  width: 50px;\n  margin-right: 10px;\n}\n.clubCassette .cassetteArea .hostProfile .hostImg .imgItem[data-v-1481c61a] {\n  height: 100%;\n  border-radius: 50%;\n}\n.clubCassette .cassetteArea .hostProfile .hostDetail .hostName[data-v-1481c61a] {\n  font-weight: bold;\n  font-size: 16px;\n}\n.clubCassette .cassetteArea .hostProfile .hostDetail .postDate[data-v-1481c61a] {\n  color: #808080;\n}\n.clubCassette .cassetteArea .fixAppealText[data-v-1481c61a] {\n  font-size: 16px;\n  line-height: 1.3;\n}\n.clubCassette .participateButtonWrapper[data-v-1481c61a] {\n  display: flex;\n  justify-content: center;\n  margin-top: 20px;\n  padding: 0 50px 30px;\n}\n.clubCassette .participateButtonWrapper .participateButton[data-v-1481c61a] {\n  background-color: #fb6542;\n  color: #ffffff;\n  height: 48px;\n  width: 300px;\n  border-radius: 10px;\n  border: none;\n  font-weight: bold;\n}\n.clubCassette .inputDateArea[data-v-1481c61a] {\n  margin-top: 20px;\n}\n.clubCassette .inputDateArea .accordionButton[data-v-1481c61a] {\n  height: 30px;\n  cursor: pointer;\n  background: #113743;\n  border-radius: 0 0 5px 5px;\n  content: \"日程を入力する\";\n}\n\n/* 外側の枠の高さを設定 */\n.accordionWrapper[data-v-1481c61a] {\n  max-height: 0;\n  overflow: hidden;\n  transition: max-height 0.3s linear;\n}\n.accordionWrapper .accordionContents[data-v-1481c61a] {\n  overflow: hidden;\n  transform: translateY(-100%);\n  transition: transform 0.3s linear;\n}\n.accordionWrapper .accordionContents .accordionInner[data-v-1481c61a] {\n  overflow: hidden;\n  transform: translateY(100%);\n  transition: transform 0.3s linear;\n}\n.accordionWrapper.isExpand[data-v-1481c61a] {\n  max-height: 100%;\n  transition: max-height 0.4s linear;\n}\n.accordionWrapper.isExpand .accordionContents[data-v-1481c61a] {\n  transform: translateY(0);\n  transition: transform 0.2s linear;\n}\n.accordionWrapper.isExpand .accordionContents .accordionInner[data-v-1481c61a] {\n  transform: translateY(0);\n  transition: transform 0.2s linear;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -2393,7 +2391,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".wrapper[data-v-bb962f12] {\n  display: flex;\n  justify-content: space-around;\n  height: 100%;\n}\n.wrapper .left[data-v-bb962f12] {\n  background: #f1f1f1;\n  flex-grow: 0.5;\n}\n.wrapper .center[data-v-bb962f12] {\n  padding-top: 30px;\n  width: 500px;\n  height: 100%;\n  border-left: 1px solid #113743;\n  border-right: 1px solid #113743;\n  flex-grow: 1.25;\n}\n.wrapper .right[data-v-bb962f12] {\n  flex-grow: 1.25;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".wrapper[data-v-bb962f12] {\n  display: flex;\n  justify-content: space-around;\n  height: 100%;\n}\n.wrapper .left[data-v-bb962f12] {\n  background: #ffffff;\n  flex-grow: 0.5;\n}\n.wrapper .center[data-v-bb962f12] {\n  padding-top: 30px;\n  width: 500px;\n  height: 100%;\n  border-left: 1px solid #113743;\n  border-right: 1px solid #113743;\n  flex-grow: 1.25;\n  overflow-y: scroll;\n}\n.wrapper .right[data-v-bb962f12] {\n  flex-grow: 1.25;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -2417,7 +2415,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".profileWrapper[data-v-0a0cbb72] {\n  padding-top: 30px;\n}\n.profileWrapper .profileImg[data-v-0a0cbb72] {\n  position: relative;\n  overflow: hidden;\n  width: 100px;\n  height: 100px;\n  border-radius: 50%;\n  margin: 0 auto;\n}\n.profileWrapper .profileImg .img[data-v-0a0cbb72] {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  height: 100%;\n}\n.profileWrapper .centerItem[data-v-0a0cbb72] {\n  border: 1px solid #c5beba;\n  border-radius: 5px;\n  margin: 10px 0;\n  text-align: center;\n}\n.profileWrapper .name[data-v-0a0cbb72] {\n  font-size: 18px;\n  width: 210px;\n  height: 48px;\n  line-height: 48px;\n  border: 1px solid #808080;\n}\n.profileWrapper .clubList[data-v-0a0cbb72] {\n  padding: 0 30px;\n}\n.profileWrapper .clubList .club[data-v-0a0cbb72] {\n  font-size: 16px;\n  line-height: 30px;\n  height: 30px;\n  padding: 2px;\n}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".profileWrapper[data-v-0a0cbb72] {\n  padding-top: 30px;\n}\n.profileWrapper .serviceLogo[data-v-0a0cbb72] {\n  margin: 0 auto;\n  width: 160px;\n  padding-bottom: 20px;\n}\n.profileWrapper .serviceLogo .serviceLogoImg[data-v-0a0cbb72] {\n  width: 100%;\n}\n.profileWrapper .profileDetail[data-v-0a0cbb72] {\n  width: 210px;\n  margin: 0 auto;\n}\n.profileWrapper .profileDetail .profileImg[data-v-0a0cbb72] {\n  position: relative;\n  overflow: hidden;\n  width: 100px;\n  margin: 0 auto;\n}\n.profileWrapper .profileDetail .profileImg .profileImgItem[data-v-0a0cbb72] {\n  width: 100%;\n  border-radius: 50%;\n}\n.profileWrapper .centerItem[data-v-0a0cbb72] {\n  border: 1px solid #c5beba;\n  border-radius: 5px;\n  margin: 10px 0;\n  text-align: center;\n}\n.profileWrapper .name[data-v-0a0cbb72] {\n  font-size: 18px;\n  width: 210px;\n  height: 48px;\n  line-height: 48px;\n  border: 1px solid #808080;\n}\n.profileWrapper .clubList[data-v-0a0cbb72] {\n  margin: 0 auto;\n  width: 150px;\n}\n.profileWrapper .clubList .club[data-v-0a0cbb72] {\n  font-size: 16px;\n  line-height: 35px;\n  height: 35px;\n  padding: 2px;\n}", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -3577,52 +3575,76 @@ var render = function () {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("li", { staticClass: "clubCassette" }, [
-    _c("div", { staticClass: "cassetteArea" }, [
-      _c("div", { staticClass: "eventTop" }, [
-        _c("div", [_vm._v(_vm._s(_vm.eventData.club.name))]),
-        _vm._v(" "),
-        _c("div", [_vm._v(_vm._s(_vm.eventData.event.name))]),
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "hostProfile" }, [
-        _c("div", { staticClass: "hostImg" }, [
-          _c("img", {
-            attrs: {
-              src: _vm.eventData.event.create_user.thumbnail_path,
-              width: "15",
-              height: "15",
-            },
-          }),
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "hostDetail" }, [
-          _c("div", { staticClass: "hostName" }, [
-            _vm._v(_vm._s(_vm.eventData.event.create_user.name)),
+  return _c(
+    "li",
+    {
+      staticClass: "clubCassette",
+      class: { isFixedSchedule: _vm.isFixedSchedule },
+    },
+    [
+      _c("div", { staticClass: "cassetteArea" }, [
+        _c("div", { staticClass: "eventTop" }, [
+          _c("div", { staticClass: "clubName" }, [
+            _vm._v(_vm._s(_vm.eventData.club.name)),
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "postDate" }, [
-            _vm._v(_vm._s(_vm.eventData.event.create_user.name)),
+          _c("div", { staticClass: "eventName" }, [
+            _vm._v(_vm._s(_vm.eventData.event.name)),
           ]),
         ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "hostProfile" }, [
+          _c("div", { staticClass: "hostImg" }, [
+            _c("img", {
+              staticClass: "imgItem",
+              attrs: { src: _vm.eventData.event.create_user.thumbnail_path },
+            }),
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "hostDetail" }, [
+            _c("div", { staticClass: "hostName" }, [
+              _vm._v(_vm._s(_vm.eventData.event.create_user.name)),
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "postDate" }, [
+              _vm._v(_vm._s(_vm.eventData.event.create_user.name)),
+            ]),
+          ]),
+        ]),
+        _vm._v(" "),
+        _vm._m(0),
       ]),
       _vm._v(" "),
-      _vm._m(0),
-      _vm._v(" "),
-      !!_vm.eventData.fix_event_schedule
-        ? _c("div", [_c("button")])
-        : _c("div", { staticClass: "inputDateArea" }),
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "skalCassette" }),
-  ])
+      !!_vm.isFixedSchedule
+        ? _c("div", { staticClass: "participateButtonWrapper" }, [
+            _c("button", { staticClass: "participateButton" }, [
+              _vm._v("やっぱり参加できる！"),
+            ]),
+          ])
+        : _c("div", { staticClass: "inputDateArea" }, [
+            _c("div", {
+              staticClass: "accordionButton",
+              on: { click: _vm.toggleAccordion },
+            }),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "accordionWrapper",
+                class: { isExpand: _vm.isOpenAccordion },
+              },
+              [_vm._m(1)]
+            ),
+          ]),
+    ]
+  )
 }
 var staticRenderFns = [
   function () {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("p", [
+    return _c("p", { staticClass: "fixAppealText" }, [
       _vm._v("\n      お疲れ様です！！\n      "),
       _c("br"),
       _vm._v(
@@ -3630,6 +3652,16 @@ var staticRenderFns = [
       ),
       _c("br"),
       _vm._v("日程の入力をお願いしますm(_ _)m\n    "),
+    ])
+  },
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "accordionContents" }, [
+      _c("div", { staticClass: "accordionInner" }, [
+        _vm._v("アコーディオンするコンテンツ"),
+      ]),
     ])
   },
 ]
@@ -3659,7 +3691,11 @@ var render = function () {
     _c(
       "div",
       { staticClass: "left" },
-      [_c("Left", { attrs: { "profile-info": _vm.profileInfo } })],
+      [
+        _vm.showProfileInfo
+          ? _c("Left", { attrs: { "profile-info": _vm.profileInfo } })
+          : _vm._e(),
+      ],
       1
     ),
     _vm._v(" "),
@@ -3701,19 +3737,18 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "profileWrapper" }, [
-    _c("div", [
+    _vm._m(0),
+    _vm._v(" "),
+    _c("div", { staticClass: "profileDetail" }, [
       _c("div", { staticClass: "profileImg" }, [
         _c("img", {
-          attrs: {
-            src: _vm.profileInfo.thumbnailPath,
-            width: "100",
-            height: "100",
-          },
+          staticClass: "profileImgItem",
+          attrs: { src: _vm.profileInfo.thumbnail_path },
         }),
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "centerItem name" }, [
-        _vm._v(_vm._s(_vm.profileInfo.userName)),
+        _vm._v(_vm._s(_vm.profileInfo.user_name)),
       ]),
     ]),
     _vm._v(" "),
@@ -3721,7 +3756,7 @@ var render = function () {
       _c(
         "ul",
         { staticClass: "clubList" },
-        _vm._l(_vm.profileInfo.clubNames, function (clubName) {
+        _vm._l(_vm.profileInfo.club_name, function (clubName) {
           return _c("li", { key: clubName, staticClass: "centerItem club" }, [
             _c("span", [_vm._v(_vm._s(clubName))]),
           ])
@@ -3731,7 +3766,19 @@ var render = function () {
     ]),
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "serviceLogo" }, [
+      _c("img", {
+        staticClass: "serviceLogoImg",
+        attrs: { src: "/images/CLUBitA.png" },
+      }),
+    ])
+  },
+]
 render._withStripped = true
 
 
