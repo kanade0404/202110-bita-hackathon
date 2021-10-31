@@ -144,7 +144,7 @@ export default {
 </style>
 
 <style lang="scss">
-@import '../../sass/variables';
+@import '../../../sass/variables';
 .scheduleCalendar {
   margin: 0 12px!important;
 

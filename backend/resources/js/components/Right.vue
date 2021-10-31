@@ -14,8 +14,8 @@
 
 <script>
 import axios from 'axios';
-import ScheduleCalendar from  './ScheduleCalendar.vue';
-import RegisteredEventList from './RegisteredEventList.vue';
+import ScheduleCalendar from  './Right/ScheduleCalendar.vue';
+import RegisteredEventList from './Right/RegisteredEventList.vue';
 
 export default {
   name: 'Right',
