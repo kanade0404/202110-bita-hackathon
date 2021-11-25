@@ -1,0 +1,2 @@
+mysql-connector
+pusher~=3.1.0
